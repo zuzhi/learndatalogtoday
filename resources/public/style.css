@@ -13,14 +13,40 @@
     line-height: 1.6em;
 }
 
+.textcontent pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 12px;
+    background: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.textcontent code {
+    word-break: break-word;
+}
+
 .CodeMirror {
     height: auto;
     border: 1px solid lightgrey;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
+
 .CodeMirror-scroll {
     overflow-y: hidden;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.chapter-nav {
+    margin: 8px 0 4px;
+}
+
+.chapter-nav a {
+    display: inline-block;
+    padding: 6px 0;
 }
 
 table.resultset {
@@ -29,4 +55,80 @@ table.resultset {
 
 table.resultset thead {
     font-weight: bold;
+}
+
+.tabbable .nav-tabs {
+    margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+    body {
+        font-size: 16px;
+    }
+
+    .textcontent h1 {
+        font-size: 22px;
+        line-height: 1.3;
+    }
+
+    .textcontent h2 {
+        font-size: 18px;
+        line-height: 1.35;
+    }
+
+    .textcontent p {
+        text-align: left;
+    }
+
+    .textcontent pre {
+        font-size: 12px;
+    }
+
+    .chapter-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .chapter-nav .pull-right {
+        float: none !important;
+    }
+
+    .tabbable .nav-tabs {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tabbable .nav-tabs > li > a {
+        padding: 6px 10px;
+    }
+
+    .inputs .row .span8 > p > small {
+        display: block;
+    }
+
+    .inputs .row .span8 > p > small .pull-right {
+        float: none !important;
+        display: block;
+        margin-top: 4px;
+    }
+
+    table.resultset {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table.resultset thead,
+    table.resultset tbody,
+    table.resultset tr {
+        display: table;
+        width: 100%;
+        table-layout: auto;
+    }
+
+    footer {
+        font-size: 14px;
+    }
 }

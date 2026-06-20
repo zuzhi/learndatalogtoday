@@ -20,22 +20,32 @@
    [:div.offset2.span8
     content]])
 
+(defn page-head [title]
+  [:head
+   [:meta {:charset "utf-8"}]
+   [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
+   (include-css "/third-party/bootstrap/css/bootstrap.css")
+   (include-css "/third-party/bootstrap/css/bootstrap-responsive.css")
+   (include-css "/third-party/codemirror-3.15/lib/codemirror.css")
+   (include-css "/style.css")
+   [:title title]])
+
+(defn chapter-nav [chapter]
+  [:div.chapter-nav.clearfix
+   (when (> chapter 0)
+     [:a {:href (str "/chapter/" (dec chapter))}
+      "← Previous chapter"])
+   (when (< chapter 8)
+     [:a.pull-right {:href (str "/chapter/" (inc chapter))}
+      "Next chapter →"])])
+
 (defn base [chapter text exercises ecount]
   (list
-   [:head
-    (include-css "/third-party/bootstrap/css/bootstrap.css")
-    (include-css "/third-party/codemirror-3.15/lib/codemirror.css")
-    (include-css "/style.css")
-    [:title "Learn Datalog Today!"]]
+   (page-head "Learn Datalog Today!")
    [:body
     [:div.container
      (row [:div.textcontent text])
-     (row (when (> chapter 0)
-            [:a {:href (str "/chapter/" (dec chapter))}
-             "<< Previous chapter"])
-          (when (< chapter 8)
-            [:a.pull-right {:href (str "/chapter/" (inc chapter))}
-             "Next chapter >>"]))
+     (row (chapter-nav chapter))
      (row [:div.exercises {:style "margin-top: 14px"} exercises])
      (row (footer))]
     (include-js "/third-party/jquery/jquery-1.10.1.min.js")
@@ -108,10 +118,7 @@
 
 (defn toc []
   (html5
-   [:head
-    (include-css "/third-party/bootstrap/css/bootstrap.css")
-    (include-css "/style.css")
-    [:title "Learn Datalog Today!"]]
+   (page-head "Learn Datalog Today!")
    [:body
     [:div.container
      (row [:div.textcontent (md/md-to-html-string
